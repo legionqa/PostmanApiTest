@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "97e2f8c7-67a3-4733-9f20-b561f2c0641a",
+		"name": "TrelloTestProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BoardsTests",
+			"item": [
+				{
+					"name": "PositiveTests",
+					"item": [
+						{
+							"name": "Create new board test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var id = pm.response.json().id;\r",
+											"pm.globals.set(\"board_id\", id)\r",
+											"\r",
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\" : \"NewPublicBoardTest\", \"desc\" : \"This board was created with API\", \"prefs_permissionLevel\" : \"public\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new Private board test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonResponse = pm.response.json();\r",
+											"\r",
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Board name test\", function(){\r",
+											"    pm.expect(jsonResponse.name).to.eq(\"NewPrivateBoardTest\")\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Board desc test\", function(){\r",
+											"    pm.expect(jsonResponse.desc).to.eq(\"This board was created with API\")\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Board Privacy test\", function(){\r",
+											"    pm.expect(jsonResponse.prefs.permissionLevel).to.eq(\"private\")\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\" : \"NewPrivateBoardTest\", \"desc\" : \"This board was created with API\", \"prefs_permissionLevel\" : \"private\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Boards Test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"});\r",
+											"\r",
+											"// pm.test(\"Board name text\", function(){\r",
+											"//     pm.expect(pm.response.text()).to.include(\"CreateNewPublicTableTest\");\r",
+											"// });\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{trello_url}}/members/me/boards?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"members",
+										"me",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Board By ID test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{trello_url}}/boards/{{board_id}}?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards",
+										"{{board_id}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update board test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\" : \"NewPublicBoardTest12345\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards/{{board_id}}?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards",
+										"{{board_id}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete board test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(200);\r",
+											"\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards/{{board_id}}?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards",
+										"{{board_id}}"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "NegativeTests",
+					"item": [
+						{
+							"name": "Get Board By ID - Negative",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(400);\r",
+											"\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Board name text\", function(){\r",
+											"    pm.expect(pm.response.text()).to.include(\"invalid id\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{trello_url}}/boards/1234567?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards",
+										"1234567"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Boards - Missing Key and token test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{trello_url}}/members/me/boards",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"members",
+										"me",
+										"boards"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new board empty name test",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\" : \"\", \"desc\" : \"This board was created with API\", \"prefs_permissionLevel\" : \"public\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create new board missing name test",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"desc\" : \"This board was created with API\", \"prefs_permissionLevel\" : \"public\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards?key={{trello_key}}&token={{trello_token}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trello_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update board with no token test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code test\", function(){\r",
+											"    pm.response.to.have.status(401);\r",
+											"\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Board name text\", function(){\r",
+											"    pm.expect(pm.response.text()).to.include(\"unauthorized permission requested\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\" : \"NewPublicBoardTest12345\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{trello_url}}/boards/5f933a36b713ea06cdbe827d?key={{trello_key}}",
+									"host": [
+										"{{trello_url}}"
+									],
+									"path": [
+										"boards",
+										"5f933a36b713ea06cdbe827d"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trello_key}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CardsTests",
+			"item": []
+		}
+	]
+}
