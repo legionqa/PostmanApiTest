@@ -1,16 +1,7 @@
 {
 	"id": "14aa8038-c1af-43ba-898f-5c0ca044e38f",
 	"values": [
-		{
-			"key": "board_id",
-			"value": "5fce569d34117b7726347c71",
-			"enabled": false
-		},
-		{
-			"key": "board_id",
-			"value": "5fca595464e8795147ae2843",
-			"enabled": false
-		},
+		
 		{
 			"key": "trello_url",
 			"value": "https://api.trello.com/1",
@@ -26,71 +17,7 @@
 			"value": "8ece502c8b3fab0541a2a44d0407fa51b9c63687316feccfaa3d76cb2b1dac71",
 			"enabled": true
 		},
-		{
-			"key": "trello_token",
-			"value": "8ece502c8b3fab0541a2a44d0407fa51b9c63687316feccfaa3d76cb2b1dac71",
-			"enabled": true
-		},
-		{
-			"key": "board_id",
-			"value": "5fca595464e8795147ae2843",
-			"enabled": true
-		},
-		{
-			"key": "board_id0",
-			"value": "5fca595464e8795147ae2843",
-			"enabled": true
-		},
-		{
-			"key": "board_id1",
-			"value": "5fce59bcc8a6022881096695",
-			"enabled": true
-		},
-		{
-			"key": "board_id10",
-			"value": "5f920243401fa454388ae020",
-			"enabled": true
-		},
-		{
-			"key": "board_id2",
-			"value": "5fc031d5f66dc63d2353958c",
-			"enabled": true
-		},
-		{
-			"key": "board_id3",
-			"value": "5fc032851c8b7e89249d2fe3",
-			"enabled": true
-		},
-		{
-			"key": "board_id4",
-			"value": "5fc032fc0823801f110e5602",
-			"enabled": true
-		},
-		{
-			"key": "board_id5",
-			"value": "5fc0333784caa47b27db32ad",
-			"enabled": true
-		},
-		{
-			"key": "board_id6",
-			"value": "5fc02c29fa0e823dfeb13133",
-			"enabled": true
-		},
-		{
-			"key": "board_id7",
-			"value": "5fc0349f7ca6f987b3787fc6",
-			"enabled": true
-		},
-		{
-			"key": "board_id8",
-			"value": "5fc034c86e384038e2a5e0dc",
-			"enabled": true
-		},
-		{
-			"key": "board_id9",
-			"value": "5fc034ebba1b5b3df3326fc7",
-			"enabled": true
-		}
+		
 	],
 	"name": "My Workspace Globals",
 	"_postman_variable_scope": "globals",
